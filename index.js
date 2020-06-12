@@ -12,9 +12,9 @@ client.once('ready', () => {
 });
 
 client.on('message', message => {
-    if (message.content === '!rip') {
+    if (message.content === '!bruh') {
         // send back "Pong." to the channel the message was sent in
-        message.channel.send('Shutting down');
+        message.channel.send('**BRUH**');
     }
 });
 
