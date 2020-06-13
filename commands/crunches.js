@@ -1,24 +1,24 @@
 module.exports = {
     name: 'crunches',
-    description: 'eh',
+    description: 'Enter your daily crunches',
+    format: '[# of crunches]',
     execute(message, args, client) {
         const Discord = require('discord.js');
-        // const client = new Discord.Client();
         message.delete();
 
         const messageEmbed = new Discord.MessageEmbed()
             .setColor("F44336")
-            .setTitle("Ninad's Achievement")
+            .setTitle(`${message.author.username} Achievement`)
             .addFields(
                 {
-                    name: 'Crunches',
+                    name: 'crunches',
                     value: args[0]
                 }
             )
             .setThumbnail("https://mfiles.alphacoders.com/593/593024.png")
             .setTimestamp()
 
-        const channel = client.channels.cache.get('721214435678748722');
+        const channel = client.channels.cache.get('719502252297158687');
         channel.send(messageEmbed);
     },
 };
