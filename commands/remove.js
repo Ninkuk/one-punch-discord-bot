@@ -10,7 +10,14 @@ module.exports = {
             return;
         }
 
-        let name = args[0];
+        let name = args[0].toLowerCase();
+        let requiredCommands = ['remove', 'create', 'bruh', 'inspireme', 'name', 'menu'];
+        for (let i = 0; i < requiredCommands.length; i++) {
+            if (name === requiredCommands[i]) {
+                message.channel.send("Keep your filthy hands away from my commands!!");
+                return;
+            }
+        }
 
         fs.unlink(`./commands/${name}.js`, function (err) {
             if (err) message.channel.send(err);

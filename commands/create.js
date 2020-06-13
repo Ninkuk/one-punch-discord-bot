@@ -10,7 +10,7 @@ module.exports = {
             return;
         }
 
-        let name = args[0];
+        let name = args[0].toLowerCase();
 
         let filecontents =
             `module.exports = {

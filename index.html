@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bruh</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="card-sets-required" class="card-sets">
+        <h3 class="set-title" id="required-error">Required Sets (Select one at least)</h3>
+    </div>
+
+    <div class="exercise-container">
+        <p>Name</p>
+        <input type="text" name="Name" id="name">
+    </div>
+
+    <script>
+        var exercises = ["Yoga", "Pushups", "Situps", "Biking"];
+
+        for (let i = 0; i < exercises.length; i++) {
+            const setName = exercises[i];
+
+            let exerciseContainer = document.createElement('div').setAttribute('class', 'exercise-container');
+
+            let setOption = document.createElement('input');
+            setOption.setAttribute('id', `${setName}`);
+            setOption.setAttribute('id', `${setName}`);
+            setOption.setAttribute('onClick', `selected('${setName}', true)`)
+            setOption.innerText = setName;
+            document.getElementById('card-sets-required').appendChild(setOption);
+        }
+    </script>
+</body>
+</html>
