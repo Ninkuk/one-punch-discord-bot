@@ -17,12 +17,17 @@ client.once('ready', () => {
 });
 
 client.on('message', message => {
-    if (message.content === 'k' || !message.author.bot) {
+    if (message.content === 'k') {
         message.channel.messages.fetch({limit: 2}).then(message1 => {
             let author = message1.last().author;
-            message.channel.send(`${author} your messages have been ignored by ${message.author}`);
+            if (author.bot) {
+                message.channel.send(`${message.author} you can't k me, FOOLISH MORTAL!`);
+            } else {
+                message.channel.send(`${author} your messages have been ignored by ${message.author}`);
+            }
         });
     }
+
     if (!message.content.startsWith(prefix) || message.author.bot) return;
     const args = message.content.slice(prefix.length).split(/ +/);
     console.log(args);
