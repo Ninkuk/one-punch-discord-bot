@@ -22,10 +22,10 @@ module.exports = {
                     return;
                 }
 
-                // const newCommand = require(`./${name}.js`);
-                // message.client.commands.set(newCommand.name, newCommand);
-                // message.channel.send(`Command \`${name}\` was added!`);
-                //
+                const newCommand = require(`./${name}.js`);
+                message.client.commands.set(newCommand.name, newCommand);
+                message.channel.send(`Command \`${name}\` was added!`);
+
                 // const obj = {};
                 // const obj2 = {};
                 // obj2.date = "200";
