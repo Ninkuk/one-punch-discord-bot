@@ -11,39 +11,33 @@ module.exports = {
         }
 
         let name = args[0].toLowerCase();
+        let filecontents = '';
+        fs.readFile("./commands/create_template.txt", 'utf8', function (err, data) {
+            filecontents = `${data}`;
+            filecontents = filecontents.replace(/NAME/g, name)
+            console.log(filecontents)
+            fs.writeFile(`./commands/${name}.js`, filecontents, 'utf8', function (err) {
+                if (err) {
+                    message.channel.send(err);
+                    return;
+                }
 
-        let filecontents =
-            `module.exports = {
-            name: '${name}',
-            description: 'Enter your daily ${name}',
-                format: '[# of ${name}]',
-                    execute(message, args, client) {
-                        const Discord = require('discord.js');
-                        message.delete();
-                
-                        const messageEmbed = new Discord.MessageEmbed()
-                            .setColor("F44336")
-                            .setTitle(\`\${message.author.username} Achievement\`)
-                            .addFields(
-                                {
-                                    name: '${name}',
-                                    value: args[0]
-                                }
-                            )
-                            .setThumbnail("https://mfiles.alphacoders.com/593/593024.png")
-                            .setTimestamp()
-                
-                        const channel = client.channels.cache.get('719502252297158687');
-                        channel.send(messageEmbed);
-                    },
-                };`;
-
-        fs.writeFile(`./commands/${name}.js`, filecontents, 'utf8', function (err) {
-            if (err) message.channel.send(err);
-
-            const newCommand = require(`./${name}.js`);
-            message.client.commands.set(newCommand.name, newCommand);
-            message.channel.send(`Command \`${name}\` was added!`);
+                // const newCommand = require(`./${name}.js`);
+                // message.client.commands.set(newCommand.name, newCommand);
+                // message.channel.send(`Command \`${name}\` was added!`);
+                //
+                // const obj = {};
+                // const obj2 = {};
+                // obj2.date = "200";
+                // obj2.pushups = 20;
+                // obj2.situps = 20;
+                // obj.ninad = [obj2];
+                // const jsonString = JSON.stringify(obj);
+                //
+                // fs.writeFile(`./commands/${name}.json`, jsonString, 'utf8', function (err) {
+                //     if (err) message.channel.send(err);
+                // });
+            });
         });
     },
 };
