@@ -20,9 +20,11 @@ module.exports = {
         }
 
         fs.unlink(`./commands/${name}.js`, function (err) {
-            if (err) message.channel.send(err);
-
-            message.channel.send(`Command \`${name}\` was removed!`);
+            if (err) {
+                message.channel.send("Sorry, there was an error removing this command.");
+            } else {
+                message.channel.send(`Command \`${name}\` was removed!`);
+            }
         });
     },
 };
