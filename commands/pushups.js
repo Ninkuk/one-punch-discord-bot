@@ -3,12 +3,25 @@ module.exports = {
     description: 'Enter your daily pushups',
     format: '[# of pushups]',
     execute(message, args, client) {
+        const fs = require('fs')
         const Discord = require('discord.js');
+        const users = require('../users.json');
         message.delete();
+
+        let exercise_data = {
+            "exercise": 'pushups',
+            "date": new Date().toJSON(),
+            "value": args[0]
+        }
+
+        const user = users[message.author.id]
+        const data = JSON.parse(fs.readFileSync('workout_data.json').toString());
+        data[user].push(exercise_data)
+        fs.writeFileSync('workout_data.json', JSON.stringify(data))
 
         const messageEmbed = new Discord.MessageEmbed()
             .setColor("F44336")
-            .setTitle(`${message.author.username} Achievement`)
+            .setTitle(message.author.username + "'s Achievement")
             .addFields(
                 {
                     name: 'pushups',
