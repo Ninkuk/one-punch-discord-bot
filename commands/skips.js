@@ -15,9 +15,9 @@ module.exports = {
         }
 
         const user = users[message.author.id]
-        const data = JSON.parse(fs.readFileSync('workout_data.json').toString());
+        const data = JSON.parse(fs.readFileSync('data/workout_data.json').toString());
         data[user].push(exercise_data)
-        fs.writeFileSync('workout_data.json', JSON.stringify(data))
+        fs.writeFileSync('data/workout_data.json', JSON.stringify(data))
 
         const messageEmbed = new Discord.MessageEmbed()
             .setColor("F44336")
