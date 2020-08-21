@@ -5,7 +5,7 @@ module.exports = {
     execute(message, args, client) {
         const fs = require('fs')
         const Discord = require('discord.js');
-        const users = require('../users.json');
+        const users = require('../data/users.json');
         message.delete();
 
         let exercise_data = {
